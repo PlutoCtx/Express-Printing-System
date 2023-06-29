@@ -68,7 +68,7 @@ public class MainFrame extends JFrame {
      */
     private BackgroundPanel getJPanel() {
         if (jPanel == null) {
-            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/主界面.jpg"))).getImage());
+            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/mainFrame.jpg"))).getImage());
             jPanel.setLayout(null);
         }
         return jPanel;

@@ -252,7 +252,7 @@ public class UpdateExpressFrame extends JFrame {
      */
     private BackgroundPanel getJPanel() {
         if (jPanel == null) {
-            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/蓝宇快递单.jpg"))).getImage());
+            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/expressCheck.jpg"))).getImage());
             jPanel.setLayout(null);
             jPanel.add(getTf_sendName(), null);
             jPanel.add(getTf_sendTelephone(), null);

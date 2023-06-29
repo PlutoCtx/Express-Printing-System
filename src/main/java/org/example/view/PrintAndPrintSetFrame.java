@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.print.Printable;
 import java.awt.print.PrinterJob;
-import java.net.URL;
 import java.util.Objects;
 import java.util.Vector;
 
@@ -156,7 +155,7 @@ public class PrintAndPrintSetFrame extends JFrame {
                         int ww = (int) pageFormat.getImageableWidth();
                         int hh = (int) pageFormat.getImageableHeight();
                         Graphics2D g2 = (Graphics2D) graphics;
-                        Image img = new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/蓝宇快递单.jpg"))).getImage(); // 创建图像对象
+                        Image img = new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/expressCheck.jpg"))).getImage(); // 创建图像对象
                         int w = Integer.parseInt(expressSize.substring(0, expressSize.indexOf(",")));
                         int h = Integer.parseInt(expressSize.substring(expressSize.indexOf(",") + 1));
                         if (w > ww) {
@@ -368,7 +367,7 @@ public class PrintAndPrintSetFrame extends JFrame {
      */
     private BackgroundPanel getJPanel() {
         if (jPanel == null) {
-            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/蓝宇快递单.jpg"))).getImage());
+            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/expressCheck.jpg"))).getImage());
             jPanel.setLayout(null);
             jPanel.add(getTf_sendName(), null);
             jPanel.add(getTf_sendTelephone(), null);

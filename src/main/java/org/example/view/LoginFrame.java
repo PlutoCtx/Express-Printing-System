@@ -42,7 +42,7 @@ public class LoginFrame extends JFrame {
             jLabel = new JLabel();
             jLabel.setBounds(new Rectangle(220, 141, 63, 18));
             jLabel.setText("用    户：");
-            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/登录.jpg"))).getImage());
+            jPanel = new BackgroundPanel(new ImageIcon(Objects.requireNonNull(LoginFrame.class.getResource("/loginin.jpg"))).getImage());
             jPanel.setLayout(null);
             jPanel.add(jLabel, null);
             jPanel.add(jLabel1, null);

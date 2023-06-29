@@ -24,7 +24,7 @@ public class BackgroundPanel extends JPanel {
         initialize();
     }
 
-    /*
+    /**
      * 重写paintComponent方法
      */
     @Override

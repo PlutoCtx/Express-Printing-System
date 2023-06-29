@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel jContentPane = null;
     private BackgroundPanel jPanel = null;// 声明自定义背景面板对象
-    private JMenuBar jJMenuBar = null;
+    private JMenuBar jMenuBar = null;
     private JMenu jMenu = null;
     private JMenuItem jMenuItem = null;
     private JMenuItem jMenuItem2 = null;
@@ -38,14 +38,13 @@ public class MainFrame extends JFrame {
 
     /**
      * This method initializes this
-     *
-     * @return void
      */
     private void initialize() {
         this.setSize(1017, 584);
         this.setJMenuBar(getJJMenuBar());
         this.setTitle("蓝宇快递打印系统");
         this.setContentPane(getJContentPane());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     /**
@@ -76,18 +75,18 @@ public class MainFrame extends JFrame {
     }
 
     /**
-     * This method initializes jJMenuBar
+     * This method initializes jMenuBar
      *
      * @return javax.swing.JMenuBar
      */
     private JMenuBar getJJMenuBar() {
-        if (jJMenuBar == null) {
-            jJMenuBar = new JMenuBar();
-            jJMenuBar.add(getJMenu());
-            jJMenuBar.add(getJMenu1());
-            jJMenuBar.add(getJMenu2());
+        if (jMenuBar == null) {
+            jMenuBar = new JMenuBar();
+            jMenuBar.add(getJMenu());
+            jMenuBar.add(getJMenu1());
+            jMenuBar.add(getJMenu2());
         }
-        return jJMenuBar;
+        return jMenuBar;
     }
 
     /**
@@ -138,8 +137,8 @@ public class MainFrame extends JFrame {
             jMenuItem2.addActionListener(e -> {
                 UpdateExpressFrame thisClass = new UpdateExpressFrame();
                 thisClass.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                Toolkit tookit = thisClass.getToolkit();
-                Dimension dm = tookit.getScreenSize();
+                Toolkit toolkit = thisClass.getToolkit();
+                Dimension dm = toolkit.getScreenSize();
                 thisClass.setLocation((dm.width - thisClass.getWidth()) / 2, (dm.height - thisClass.getHeight()) / 2);
                 thisClass.setVisible(true);
             });
@@ -156,7 +155,7 @@ public class MainFrame extends JFrame {
         if (jMenu1 == null) {
             jMenu1 = new JMenu();
             jMenu1.setText("打印管理");
-            jMenu1.add(getJMenuItem3());
+            jMenu1.add(printExpressCheckMenuItem());
         }
         return jMenu1;
     }
@@ -170,9 +169,9 @@ public class MainFrame extends JFrame {
         if (jMenu2 == null) {
             jMenu2 = new JMenu();
             jMenu2.setText("系统");
-            jMenu2.add(getJMenuItem1());
-            jMenu2.add(getJMenuItem4());
-            jMenu2.add(getJMenuItem5());
+            jMenu2.add(addUserMenuItem());
+            jMenu2.add(updatePasswordMenuItem4());
+            jMenu2.add(exitMenuItem());
         }
         return jMenu2;
     }
@@ -182,7 +181,7 @@ public class MainFrame extends JFrame {
      *
      * @return javax.swing.JMenuItem
      */
-    private JMenuItem getJMenuItem3() {
+    private JMenuItem printExpressCheckMenuItem() {
         if (jMenuItem3 == null) {
             jMenuItem3 = new JMenuItem();
             jMenuItem3.setText("打印快递单");
@@ -203,13 +202,13 @@ public class MainFrame extends JFrame {
      *
      * @return javax.swing.JMenuItem
      */
-    private JMenuItem getJMenuItem4() {
+    private JMenuItem updatePasswordMenuItem4() {
         if (jMenuItem4 == null) {
             jMenuItem4 = new JMenuItem();
             jMenuItem4.setText("修改用户密码");
             jMenuItem4.addActionListener(e -> {
                 UpdatePasswordFrame thisClass = new UpdatePasswordFrame();
-                thisClass.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                thisClass.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 Toolkit tookit = thisClass.getToolkit();
                 Dimension dm = tookit.getScreenSize();
                 thisClass.setLocation((dm.width - thisClass.getWidth()) / 2, (dm.height - thisClass.getHeight()) / 2);
@@ -224,7 +223,7 @@ public class MainFrame extends JFrame {
      *
      * @return javax.swing.JMenuItem
      */
-    private JMenuItem getJMenuItem5() {
+    private JMenuItem exitMenuItem() {
         if (jMenuItem5 == null) {
             jMenuItem5 = new JMenuItem();
             jMenuItem5.setText("退出系统");
@@ -238,7 +237,7 @@ public class MainFrame extends JFrame {
      *
      * @return javax.swing.JMenuItem
      */
-    private JMenuItem getJMenuItem1() {
+    private JMenuItem addUserMenuItem() {
         if (jMenuItem1 == null) {
             jMenuItem1 = new JMenuItem();
             jMenuItem1.setText("添加用户");

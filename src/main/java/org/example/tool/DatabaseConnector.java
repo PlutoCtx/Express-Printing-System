@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.tool;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -12,13 +12,13 @@ import java.sql.DriverManager;
  * @since JDK17
  */
 
-public class Dao {
-    private static Dao dao = new Dao(); // 声明DAO类的静态实例
+public class DatabaseConnector {
+    private static final DatabaseConnector DATABASE_CONNECTOR = new DatabaseConnector(); // 声明DatabaseConnector类的静态实例
 
     /**
      * 构造方法，加载数据库驱动
      */
-    public Dao() {
+    public DatabaseConnector() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // 加载数据库驱动
         } catch (ClassNotFoundException e) {
@@ -34,7 +34,6 @@ public class Dao {
     public static Connection getConn() {
         try {
             Connection conn = null; // 定义数据库连接
-//            String url = "jdbc:jtds:sqlserver://localhost:1433/db_ExpressPrint"; // 数据库db_Express的URL
             String url = "jdbc:mysql://localhost:3306/expressPrintingSystem"; // 数据库db_Express的URL
             String username = "root"; // 数据库的用户名
             String password = "Shangxiao111"; // 数据库密码

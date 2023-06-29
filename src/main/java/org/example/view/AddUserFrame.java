@@ -27,11 +27,11 @@ public class AddUserFrame extends JFrame {
     private JLabel jLabel = null;
     private JLabel jLabel1 = null;
     private JLabel jLabel2 = null;
-    private JTextField tf_user = null;
-    private JPasswordField pf_pwd = null;
-    private JPasswordField pf_okPwd = null;
-    private JButton btn_save = null;
-    private JButton btn_return = null;
+    private JTextField userTextField = null;
+    private JPasswordField passwordTextField = null;
+    private JPasswordField confirmPasswordTextField = null;
+    private JButton saveBtn = null;
+    private JButton resetBtn = null;
 
     /**
      * This is the default constructor
@@ -43,8 +43,6 @@ public class AddUserFrame extends JFrame {
 
     /**
      * This method initializes this
-     *
-     * @return void
      */
     private void initialize() {
         this.setSize(300, 190);
@@ -73,70 +71,70 @@ public class AddUserFrame extends JFrame {
             jContentPane.add(jLabel, null);
             jContentPane.add(jLabel1, null);
             jContentPane.add(jLabel2, null);
-            jContentPane.add(getTf_user(), null);
-            jContentPane.add(getPf_pwd(), null);
-            jContentPane.add(getPf_okPwd(), null);
-            jContentPane.add(getBtn_save(), null);
-            jContentPane.add(getBtn_return(), null);
+            jContentPane.add(getUserName(), null);
+            jContentPane.add(getPassword(), null);
+            jContentPane.add(getConfirmPassword(), null);
+            jContentPane.add(getSaveBtn(), null);
+            jContentPane.add(getResetBtn(), null);
         }
         return jContentPane;
     }
 
     /**
-     * This method initializes tf_user
+     * This method initializes userTextField
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getTf_user() {
-        if (tf_user == null) {
-            tf_user = new JTextField();
-            tf_user.setBounds(new Rectangle(95, 18, 166, 22));
+    private JTextField getUserName() {
+        if (userTextField == null) {
+            userTextField = new JTextField();
+            userTextField.setBounds(new Rectangle(95, 18, 166, 22));
         }
-        return tf_user;
+        return userTextField;
     }
 
     /**
-     * This method initializes pf_pwd
+     * This method initializes passwordTextField
      *
      * @return javax.swing.JPasswordField
      */
-    private JPasswordField getPf_pwd() {
-        if (pf_pwd == null) {
-            pf_pwd = new JPasswordField();
-            pf_pwd.setBounds(new Rectangle(95, 49, 164, 22));
-            pf_pwd.setEchoChar('*');
+    private JPasswordField getPassword() {
+        if (passwordTextField == null) {
+            passwordTextField = new JPasswordField();
+            passwordTextField.setBounds(new Rectangle(95, 49, 164, 22));
+            passwordTextField.setEchoChar('*');
         }
-        return pf_pwd;
+        return passwordTextField;
     }
 
     /**
-     * This method initializes pf_okPwd
+     * This method initializes confirmPasswordTextField
      *
      * @return javax.swing.JPasswordField
      */
-    private JPasswordField getPf_okPwd() {
-        if (pf_okPwd == null) {
-            pf_okPwd = new JPasswordField();
-            pf_okPwd.setBounds(new Rectangle(96, 78, 164, 22));
-            pf_okPwd.setEchoChar('*');
+    private JPasswordField getConfirmPassword() {
+        if (confirmPasswordTextField == null) {
+            confirmPasswordTextField = new JPasswordField();
+            confirmPasswordTextField.setBounds(new Rectangle(96, 78, 164, 22));
+            confirmPasswordTextField.setEchoChar('*');
         }
-        return pf_okPwd;
+        return confirmPasswordTextField;
     }
 
     /**
-     * This method initializes btn_save
+     * This method initializes saveBtn
      *
      * @return javax.swing.JButton
      */
-    private JButton getBtn_save() {
-        if (btn_save == null) {
-            btn_save = new JButton();
-            btn_save.setBounds(new Rectangle(41, 111, 84, 23));
-            btn_save.setText("保    存");
-            btn_save.addActionListener(e -> {
-                String username = tf_user.getText().trim(); // 获得用户名
-                String password = new String(pf_pwd.getPassword()); // 获得密码
-                String okPassword = new String(pf_okPwd.getPassword()); // 获得确认密码
+    private JButton getSaveBtn() {
+        if (saveBtn == null) {
+            saveBtn = new JButton();
+            saveBtn.setBounds(new Rectangle(41, 111, 84, 23));
+            saveBtn.setText("保    存");
+            saveBtn.addActionListener(e -> {
+                String username = userTextField.getText().trim(); // 获得用户名
+                String password = new String(passwordTextField.getPassword()); // 获得密码
+                String okPassword = new String(confirmPasswordTextField.getPassword()); // 获得确认密码
                 User user = new User(); // 创建User类的实例
                 user.setName(username); // 封装用户名
                 user.setPwd(password); // 封装密码
@@ -145,22 +143,22 @@ public class AddUserFrame extends JFrame {
             });
 
         }
-        return btn_save;
+        return saveBtn;
     }
 
     /**
-     * This method initializes btn_return
+     * This method initializes resetBtn
      *
      * @return javax.swing.JButton
      */
-    private JButton getBtn_return() {
-        if (btn_return == null) {
-            btn_return = new JButton();
-            btn_return.setBounds(new Rectangle(151, 110, 85, 23));
-            btn_return.setText("返    回");
-            btn_return.addActionListener(e -> dispose());
+    private JButton getResetBtn() {
+        if (resetBtn == null) {
+            resetBtn = new JButton();
+            resetBtn.setBounds(new Rectangle(151, 110, 85, 23));
+            resetBtn.setText("返    回");
+            resetBtn.addActionListener(e -> dispose());
         }
-        return btn_return;
+        return resetBtn;
     }
 
 }

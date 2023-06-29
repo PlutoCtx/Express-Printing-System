@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.entity.ExpressMessage;
+import org.example.tool.DatabaseConnector;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -20,55 +21,54 @@ import java.util.Vector;
 public class ExpressMessageDao {
 
     public static void insertExpress(ExpressMessage m) {
-        if (m.getSendName() == null || m.getSendName().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "寄件人信息必须填写。");
+        if (m.getSendName() == null || "".equals(m.getSendName().trim())) {
+            JOptionPane.showMessageDialog(null, "寄件人信息不能为空");
             return;
         }
-        if (m.getSendTelephone() == null || m.getSendTelephone().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "寄件人电话必须填写。");
+        if (m.getSendTelephone() == null || "".equals(m.getSendTelephone().trim())) {
+            JOptionPane.showMessageDialog(null, "寄件人电话不能为空");
             return;
         }
-        if (m.getSendCompary() == null || m.getSendCompary().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "寄件人公司必须填写。");
+        if (m.getSendCompary() == null || "".equals(m.getSendCompary().trim())) {
+            JOptionPane.showMessageDialog(null, "寄件人公司不能为空");
             return;
         }
-        if (m.getSendAddress() == null || m.getSendAddress().trim().equals("||")) {
-            JOptionPane.showMessageDialog(null, "寄件人地址必须填写。");
+        if (m.getSendAddress() == null || "||".equals(m.getSendAddress().trim())) {
+            JOptionPane.showMessageDialog(null, "寄件人地址不能为空");
             return;
         }
-        if (m.getSendPostcode() == null || m.getSendPostcode().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "寄件人邮编必须填写。");
+        if (m.getSendPostcode() == null || "".equals(m.getSendPostcode().trim())) {
+            JOptionPane.showMessageDialog(null, "寄件人邮编不能为空");
             return;
         }
 
-        if (m.getReceiveName() == null || m.getReceiveName().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "收件人姓名必须填写。");
+        if (m.getReceiveName() == null || "".equals(m.getReceiveName().trim())) {
+            JOptionPane.showMessageDialog(null, "收件人姓名不能为空");
             return;
         }
-        if (m.getReceiveTelephone() == null || m.getReceiveTelephone().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "收件人电话必须填写。");
+        if (m.getReceiveTelephone() == null || "".equals(m.getReceiveTelephone().trim())) {
+            JOptionPane.showMessageDialog(null, "收件人电话不能为空");
             return;
         }
-        if (m.getReceiveCompary() == null || m.getReceiveCompary().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "收件人公司必须填写。");
+        if (m.getReceiveCompary() == null || "".equals(m.getReceiveCompary().trim())) {
+            JOptionPane.showMessageDialog(null, "收件人公司不能为空");
             return;
         }
-        if (m.getReceiveAddress() == null || m.getReceiveAddress().trim().equals("||")) {
-            JOptionPane.showMessageDialog(null, "收件人地址必须填写。");
+        if (m.getReceiveAddress() == null || "||".equals(m.getReceiveAddress().trim())) {
+            JOptionPane.showMessageDialog(null, "收件人地址不能为空");
             return;
         }
-        if (m.getReceivePostcode() == null || m.getReceivePostcode().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "收件人邮编必须填写。");
+        if (m.getReceivePostcode() == null || "".equals(m.getReceivePostcode().trim())) {
+            JOptionPane.showMessageDialog(null, "收件人邮编不能为空");
             return;
         }
         Connection conn = null; // 声明数据库连接
         // 声明PreparedStatement对象
         PreparedStatement ps = null;
         try {
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
-            ps = conn
-                    .prepareStatement("insert into " +
+            ps = conn.prepareStatement("insert into " +
                             "tb_receiveSendMessage (" +
                             "sendName, " +
                             "sendTelephone, " +
@@ -83,17 +83,18 @@ public class ExpressMessageDao {
                             "ControlPosition, " +
                             "expressSize)  " +
                             "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            ps.setString(1, m.getSendName()); // 为参数赋值
+            // 为参数赋值
+            ps.setString(1, m.getSendName());
             ps.setString(2, m.getSendTelephone());
             ps.setString(3, m.getSendCompary());
             ps.setString(4, m.getSendAddress());
             ps.setString(5, m.getSendPostcode());
-            ps.setString(6, m.getReceiveName()); // 为参数赋值
+            ps.setString(6, m.getReceiveName());
             ps.setString(7, m.getReceiveTelephone());
             ps.setString(8, m.getReceiveCompary());
             ps.setString(9, m.getReceiveAddress());
             ps.setString(10, m.getReceivePostcode());
-            ps.setString(11, m.getControlPosition()); // 为参数赋值
+            ps.setString(11, m.getControlPosition());
             ps.setString(12, m.getExpressSize());
             int flag = ps.executeUpdate();
             if (flag > 0) {
@@ -123,7 +124,7 @@ public class ExpressMessageDao {
         // 声明PreparedStatement对象
         PreparedStatement ps = null;
         try {
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             ps = conn.prepareStatement("update tb_receiveSendMessage " +
                             "set sendName = ?, " +
@@ -139,17 +140,18 @@ public class ExpressMessageDao {
                             "ControlPosition = ?, " +
                             "expressSize = ? " +
                             "where id = ?");
-            ps.setString(1, m.getSendName()); // 为参数赋值
+            // 为参数赋值
+            ps.setString(1, m.getSendName());
             ps.setString(2, m.getSendTelephone());
             ps.setString(3, m.getSendCompary());
             ps.setString(4, m.getSendAddress());
             ps.setString(5, m.getSendPostcode());
-            ps.setString(6, m.getReceiveName()); // 为参数赋值
+            ps.setString(6, m.getReceiveName());
             ps.setString(7, m.getReceiveTelephone());
             ps.setString(8, m.getReceiveCompary());
             ps.setString(9, m.getReceiveAddress());
             ps.setString(10, m.getReceivePostcode());
-            ps.setString(11, m.getControlPosition()); // 为参数赋值
+            ps.setString(11, m.getControlPosition());
             ps.setString(12, m.getExpressSize());
             ps.setInt(13, m.getId());
             int flag = ps.executeUpdate();
@@ -181,7 +183,7 @@ public class ExpressMessageDao {
         // 声明PreparedStatement对象
         PreparedStatement ps = null;
         try {
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             ps = conn.prepareStatement("select " +
                     "sendName, " +
@@ -238,7 +240,7 @@ public class ExpressMessageDao {
         // 声明PreparedStatement对象
         PreparedStatement ps = null;
         try {
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             ps = conn.prepareStatement("select " +
                             "id, " +

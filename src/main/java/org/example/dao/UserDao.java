@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.entity.User;
+import org.example.tool.DatabaseConnector;
 import org.example.tool.SaveUserStateTool;
 
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class UserDao {
         try {
             String username = user.getName();
             String pwd = user.getPwd();
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             PreparedStatement ps = conn.prepareStatement("select password " +
                     "from tb_user " +
@@ -82,7 +83,7 @@ public class UserDao {
                 JOptionPane.showMessageDialog(null, "两次输入的密码不一致。");
                 return;
             }
-            conn = Dao.getConn(); // 获得数据库连接
+            conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             PreparedStatement ps = conn.prepareStatement("insert into" +
                     " tb_user (username, password)  " +
@@ -129,7 +130,7 @@ public class UserDao {
                 JOptionPane.showMessageDialog(null, "原密码不正确。");
                 return;
             }
-            Connection conn = Dao.getConn(); // 获得数据库连接
+            Connection conn = DatabaseConnector.getConn(); // 获得数据库连接
             // 创建PreparedStatement对象，并传递SQL语句
             PreparedStatement ps = conn.prepareStatement("update tb_user " +
                     "set password = ? " +
